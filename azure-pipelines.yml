@@ -11,15 +11,19 @@ pool:
 
 steps:
 - task: Npm@1
+  displayName: install
   inputs:
     command: 'install'
 
+
 - task: Npm@1
+  displayName: Build
   inputs:
     command: 'custom'
     customCommand: 'run build'
 
 - task: Npm@1
+  displayName: test
   inputs:
     command: 'custom'
     customCommand: 'run test'
