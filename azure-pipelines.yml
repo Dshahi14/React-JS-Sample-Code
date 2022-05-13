@@ -20,7 +20,7 @@ steps:
   displayName: Build
   inputs:
     command: 'custom'
-    customCommand: 'run buil'
+    customCommand: 'run build'
 
 - task: Npm@1
   displayName: test
