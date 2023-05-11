@@ -19,13 +19,13 @@ steps:
   displayName: install
   inputs:
     command: 'install'
-    workingDir: 'create-react-app'
+    workingDir: 'React-JS-Sample-Code'
 
 - task: Npm@1
   displayName: Build
   inputs:
     command: 'custom'
-    workingDir: 'create-react-app'
+    workingDir: 'React-JS-Sample-Code'
     customCommand: 'run build'
 
 - task: PublishPipelineArtifact@1
