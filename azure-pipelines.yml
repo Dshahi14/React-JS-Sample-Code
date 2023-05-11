@@ -1,24 +1,27 @@
-resources:
-  repositories:
-  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: Dshahi14
-    name: Dshahi14/create-react-app
-  - repository: template # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: Dshahi14
-    name: Dshahi14/abc
-
 trigger:
 - none
 
 pool:
   vmImage: 'ubuntu-latest'
 
+resources:
+  repositories:
+  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: Dshahi14
+    name: Dshahi14/create-react-app
+
+  - repository: templates # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: Dshahi14
+    name: Dshahi14/abc
+
 stages:
   - stage:
     jobs:
+     - template: Reactjsbuild.yaml@templates
      - job:
        steps:
         - checkout: MyGitHubRepo
+          
 
