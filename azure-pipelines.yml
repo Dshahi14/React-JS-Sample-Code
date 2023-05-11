@@ -19,10 +19,11 @@ resources:
 stages:
   - stage:
     jobs:
-     - template: ReactjsBuild.yaml@templates
+     
      - job:
        steps:
         - checkout: MyGitHubRepo
+     - template: ReactjsBuild.yaml@templates
      
           
 
