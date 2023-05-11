@@ -3,7 +3,7 @@ resources:
   - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
     type: github
     endpoint: Dshahi14
-    name: Dshahi14/React-JS-Sample-Code
+    name: Dshahi14/WebApplication-test
 
 trigger:
 - none
