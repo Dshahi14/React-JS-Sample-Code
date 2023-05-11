@@ -23,7 +23,8 @@ stages:
      - job:
        steps:
         - checkout: MyGitHubRepo
-     - template: ReactjsBuild.yaml@templates
+        - template: ReactjsBuild.yaml@templates
+     
      
           
 
