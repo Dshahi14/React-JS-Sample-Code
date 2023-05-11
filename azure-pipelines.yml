@@ -19,6 +19,7 @@ steps:
   displayName: install
   inputs:
     command: 'install'
+    workingDir: 'create-react-app'
 
 - task: Npm@1
   displayName: Build
