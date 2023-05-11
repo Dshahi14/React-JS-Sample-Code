@@ -3,7 +3,7 @@ resources:
   - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
     type: github
     endpoint: Dshahi14
-    name: Dshahi14/WebApplication-test
+    name: Dshahi14/create-react-app
 
 trigger:
 - none
@@ -15,5 +15,19 @@ steps:
 - checkout: self
 - checkout: MyGitHubRepo
 
+- task: Npm@1
+  displayName: install
+  inputs:
+    command: 'install'
 
-- script: dir $(Build.SourcesDirectory)
+- task: Npm@1
+  displayName: Build
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
