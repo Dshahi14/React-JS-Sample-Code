@@ -4,6 +4,10 @@ resources:
     type: github
     endpoint: Dshahi14
     name: Dshahi14/create-react-app
+  - repository: template # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: Dshahi14
+    name: Dshahi14/abc
 
 trigger:
 - none
@@ -11,25 +15,11 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- checkout: self
-- checkout: MyGitHubRepo
+stages:
+  - stage:
+    jobs:
+     - job:
+       steps:
+        - checkout: MyGitHubRepo
+     - template: ReactjsBuild.yaml@template
 
-- task: Npm@1
-  displayName: install
-  inputs:
-    command: 'install'
-    workingDir: 'React-JS-Sample-Code'
-
-- task: Npm@1
-  displayName: Build
-  inputs:
-    command: 'custom'
-    workingDir: 'React-JS-Sample-Code'
-    customCommand: 'run build'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/React-JS-Sample-Code'
-    artifact: 'drop'
-    publishLocation: 'pipeline'
