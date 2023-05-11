@@ -1,41 +1,19 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+resources:
+  repositories:
+  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: Dshahi14
+    name: Dshahi14/React-JS-Sample-Code
 
 trigger:
-- main
+- none
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- task: Npm@1
-  displayName: install
-  inputs:
-    command: 'install'
+- checkout: self
+- checkout: MyGitHubRepo
 
 
-- task: Npm@1
-  displayName: Build
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
-
-- task: Npm@1
-  displayName: test
-  inputs:
-    command: 'custom'
-    customCommand: 'run test'
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: 'junit.xml'
-    testRunTitle: 'test-$(build.buildId)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+- script: dir $(Build.SourcesDirectory)
