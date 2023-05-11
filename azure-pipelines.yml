@@ -25,6 +25,7 @@ steps:
   displayName: Build
   inputs:
     command: 'custom'
+    workingDir: 'create-react-app'
     customCommand: 'run build'
 
 - task: PublishPipelineArtifact@1
